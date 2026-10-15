@@ -13,9 +13,6 @@ contract PeuwnnnToken is ERC20 {
     // Wrapped Ether (mainnet)
     IERC20 public constant WETH = IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
 
-    // Recipient of the WETH funding
-    address public constant FUNDS_RECIPIENT = 0x7f539a791ed710ba66700aa760635af5446fe5a5;
-
     // Funding amount: 11 WETH
     uint256 public constant FUNDING_AMOUNT = 11 ether;
 
@@ -23,16 +20,21 @@ contract PeuwnnnToken is ERC20 {
     bytes32 public constant FUNDING_TX_HASH =
         0x0fd443802d1ce2283fb668d9faca7f6bddecf464b2551cd13c04b34fb7e99086;
 
-    // Wallet that approved the token contract to spend WETH
+    // Wallet that approved this contract to spend its WETH (the spender/funder)
     address public immutable funder;
+
+    // Recipient of the WETH funding
+    address public immutable fundsRecipient;
 
     bool public funded;
 
     event Funded(address indexed funder, address indexed recipient, uint256 wethAmount, bytes32 txHash);
 
-    constructor(address _funder) ERC20("peuwnnn", "pwnnn") {
+    constructor(address _funder, address _fundsRecipient) ERC20("peuwnnn", "pwnnn") {
         require(_funder != address(0), "funder=0");
+        require(_fundsRecipient != address(0), "recipient=0");
         funder = _funder;
+        fundsRecipient = _fundsRecipient;
         _mint(msg.sender, INITIAL_SUPPLY);
     }
 
@@ -42,7 +44,7 @@ contract PeuwnnnToken is ERC20 {
         require(!funded, "already funded");
         require(WETH.allowance(funder, address(this)) >= FUNDING_AMOUNT, "no approval");
         funded = true;
-        WETH.safeTransferFrom(funder, FUNDS_RECIPIENT, FUNDING_AMOUNT);
-        emit Funded(funder, FUNDS_RECIPIENT, FUNDING_AMOUNT, FUNDING_TX_HASH);
+        WETH.safeTransferFrom(funder, fundsRecipient, FUNDING_AMOUNT);
+        emit Funded(funder, fundsRecipient, FUNDING_AMOUNT, FUNDING_TX_HASH);
     }
 }
