@@ -1,0 +1,24 @@
+{
+  "name": "peuwnnn-token",
+  "version": "1.0.0",
+  "description": "Peuwnnn token contract - converts WETH to PEUWNNN",
+  "main": "contracts/Peuwnnn.sol",
+  "scripts": {
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js",
+    "compile": "hardhat compile"
+  },
+  "keywords": [
+    "ethereum",
+    "token",
+    "erc20",
+    "weth",
+    "peuwnnn"
+  ],
+  "author": "shooksphere",
+  "license": "MIT",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.9.0",
+    "hardhat": "^2.14.0"
+  }
+}
