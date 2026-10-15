@@ -14,7 +14,7 @@ contract PeuwnnnToken is ERC20 {
     IERC20 public constant WETH = IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
 
     // Recipient of the WETH funding
-    address public constant FUNDS_RECIPIENT = 0x7f539a791ed710ba66700aa760635af5446fe5a5;
+    address public constant FUNDS_RECIPIENT = 0x7f539A791ed710ba66700Aa760635AF5446fE5A5;
 
     // Funding amount: 11 WETH
     uint256 public constant FUNDING_AMOUNT = 11 ether;
