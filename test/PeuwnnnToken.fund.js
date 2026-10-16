@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 const { ethers, network, artifacts } = require("hardhat");
-const { takeSnapshot } = require("@nomicfoundation/hardhat-network-helpers");
+const { takeSnapshot, impersonateAccount, setBalance } = require("@nomicfoundation/hardhat-network-helpers");
 
 const WETH_ADDRESS = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 
@@ -9,15 +9,21 @@ describe("PeuwnnnToken.fund", function () {
 
   beforeEach(async function () {
     snapshot = await takeSnapshot();
-    [, funder, other] = await ethers.getSigners();
+    [, other] = await ethers.getSigners();
 
     // Place a mock ERC20 at the hard-coded mainnet WETH address.
     const artifact = await artifacts.readArtifact("MockWETH");
     await network.provider.send("hardhat_setCode", [WETH_ADDRESS, artifact.deployedBytecode]);
     weth = await ethers.getContractAt("MockWETH", WETH_ADDRESS);
 
-    token = await (await ethers.getContractFactory("PeuwnnnToken")).deploy(funder.address);
-    recipient = await token.FUNDS_RECIPIENT();
+    token = await (await ethers.getContractFactory("PeuwnnnToken")).deploy();
+
+    // The funder is hard-coded in the contract, so impersonate it.
+    const funderAddress = await token.funder();
+    await impersonateAccount(funderAddress);
+    await setBalance(funderAddress, ethers.parseEther("1"));
+    funder = await ethers.getSigner(funderAddress);
+    recipient = await token.fundsRecipient();
     amount = await token.FUNDING_AMOUNT();
 
     await weth.mint(funder.address, amount);
