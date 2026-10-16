@@ -18,7 +18,9 @@
   "author": "shooksphere",
   "license": "MIT",
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@openzeppelin/contracts": "^4.9.0",
+    "dotenv": "^18.0.8",
     "hardhat": "^2.14.0"
   }
 }

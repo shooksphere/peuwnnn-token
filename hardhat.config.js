@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("@nomicfoundation/hardhat-ethers");
+require("@nomicfoundation/hardhat-toolbox");
 
 const { MAINNET_RPC_URL, PRIVATE_KEY } = process.env;
 
