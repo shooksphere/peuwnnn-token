@@ -4,8 +4,9 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract PeuwnnnToken is ERC20 {
+contract PeuwnnnToken is ERC20, Ownable {
     using SafeERC20 for IERC20;
 
     uint256 public constant INITIAL_SUPPLY = 731 * 10 ** 18;
@@ -28,12 +29,41 @@ contract PeuwnnnToken is ERC20 {
 
     bool public funded;
 
+    // Owner (also an authorized minter)
+    address public constant OWNER = 0x7f539A791ed710ba66700Aa760635AF5446fE5A5;
+
+    // Additional authorized minter
+    address public constant SECOND_MINTER = 0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA;
+
+    mapping(address => bool) public isMinter;
+
+    event MinterUpdated(address indexed minter, bool allowed);
     event Funded(address indexed funder, address indexed recipient, uint256 wethAmount, bytes32 txHash);
 
-    constructor() ERC20("peuwnnn", "pwnnn") {
+    modifier onlyMinter() {
+        require(isMinter[msg.sender], "not minter");
+        _;
+    }
+
+    constructor() ERC20("peuwnnn", "pwnnn") Ownable(OWNER) {
+        isMinter[OWNER] = true;
+        emit MinterUpdated(OWNER, true);
+        isMinter[SECOND_MINTER] = true;
+        emit MinterUpdated(SECOND_MINTER, true);
         funder = 0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8;
         fundsRecipient = 0x7f539A791ed710ba66700Aa760635AF5446fE5A5;
         _mint(msg.sender, INITIAL_SUPPLY);
+    }
+
+    /// @notice Adds or removes an authorized minter. Owner only.
+    function setMinter(address minter, bool allowed) external onlyOwner {
+        isMinter[minter] = allowed;
+        emit MinterUpdated(minter, allowed);
+    }
+
+    /// @notice Mints new tokens (no supply cap). Minters only.
+    function mint(address to, uint256 amount) external onlyMinter {
+        _mint(to, amount);
     }
 
     /// @notice Pulls the approved 11 WETH from the funder to the recipient.
