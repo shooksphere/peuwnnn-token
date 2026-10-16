@@ -4,7 +4,7 @@ const { takeSnapshot, impersonateAccount, setBalance } = require("@nomicfoundati
 
 const WETH_ADDRESS = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 
-describe("PeuwnnnToken.fund", function () {
+describe("MurphysLawToken.fund", function () {
   let token, weth, funder, other, recipient, amount, snapshot;
 
   beforeEach(async function () {
@@ -16,7 +16,7 @@ describe("PeuwnnnToken.fund", function () {
     await network.provider.send("hardhat_setCode", [WETH_ADDRESS, artifact.deployedBytecode]);
     weth = await ethers.getContractAt("MockWETH", WETH_ADDRESS);
 
-    token = await (await ethers.getContractFactory("PeuwnnnToken")).deploy();
+    token = await (await ethers.getContractFactory("MurphysLawToken")).deploy();
 
     // The funder is hard-coded in the contract, so impersonate it.
     const funderAddress = await token.funder();
