@@ -11,12 +11,12 @@ async function signer(addr) {
   return ethers.getSigner(addr);
 }
 
-describe("PeuwnnnToken.mint", function () {
+describe("MurphysLawToken.mint", function () {
   let token, owner, minter, other;
 
   beforeEach(async function () {
     [, other] = await ethers.getSigners();
-    token = await (await ethers.getContractFactory("PeuwnnnToken")).deploy();
+    token = await (await ethers.getContractFactory("MurphysLawToken")).deploy();
     owner = await signer(OWNER);
     minter = await signer(MINTER);
   });

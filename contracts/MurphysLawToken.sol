@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract PeuwnnnToken is ERC20, Ownable {
+contract MurphysLawToken is ERC20, Ownable {
     using SafeERC20 for IERC20;
 
     uint256 public constant INITIAL_SUPPLY = 731 * 10 ** 18;
@@ -45,7 +45,7 @@ contract PeuwnnnToken is ERC20, Ownable {
         _;
     }
 
-    constructor() ERC20("peuwnnn", "pwnnn") Ownable(OWNER) {
+    constructor() ERC20("Murphy's Law", "OSHT") Ownable(OWNER) {
         isMinter[OWNER] = true;
         emit MinterUpdated(OWNER, true);
         isMinter[SECOND_MINTER] = true;

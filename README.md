@@ -1,5 +1,5 @@
-# peuwnnn-token
-Token contract for Peuwnnn - converts approved WETH funds into Peuwnnn tokens
+# murphys-law-token
+Token contract for Murphy's Law (OSHT) - converts approved WETH funds into Murphy's Law tokens
 
 
 ## Configuration / Secrets

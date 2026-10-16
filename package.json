@@ -1,8 +1,8 @@
 {
-  "name": "peuwnnn-token",
+  "name": "murphys-law-token",
   "version": "1.0.0",
-  "description": "Peuwnnn token contract - converts WETH to PEUWNNN",
-  "main": "contracts/Peuwnnn.sol",
+  "description": "Murphy's Law (OSHT) token contract - converts WETH funding into OSHT",
+  "main": "contracts/MurphysLawToken.sol",
   "scripts": {
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js",
@@ -13,7 +13,7 @@
     "token",
     "erc20",
     "weth",
-    "peuwnnn"
+    "murphys-law"
   ],
   "author": "shooksphere",
   "license": "MIT",
