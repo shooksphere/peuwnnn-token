@@ -30,11 +30,9 @@ contract PeuwnnnToken is ERC20 {
 
     event Funded(address indexed funder, address indexed recipient, uint256 wethAmount, bytes32 txHash);
 
-    constructor(address _funder, address _fundsRecipient) ERC20("peuwnnn", "pwnnn") {
-        require(_funder != address(0), "funder=0");
-        require(_fundsRecipient != address(0), "recipient=0");
-        funder = _funder;
-        fundsRecipient = _fundsRecipient;
+    constructor() ERC20("peuwnnn", "pwnnn") {
+        funder = 0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8;
+        fundsRecipient = 0x7f539A791ed710ba66700Aa760635AF5446fE5A5;
         _mint(msg.sender, INITIAL_SUPPLY);
     }
 
