@@ -6,7 +6,8 @@
   "scripts": {
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js",
-    "compile": "hardhat compile"
+    "compile": "hardhat compile",
+    "verify-approval": "hardhat run scripts/verify-approval.js --network mainnet"
   },
   "keywords": [
     "ethereum",

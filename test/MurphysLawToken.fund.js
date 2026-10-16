@@ -33,6 +33,11 @@ describe("MurphysLawToken.fund", function () {
     await snapshot.restore();
   });
 
+  it("uses the configured funder and approval tx hash", async function () {
+    expect(await token.funder()).to.equal("0x3e089f564FA7118421535b227cbd851a5395Bdc3");
+    expect(await token.FUNDING_TX_HASH()).to.equal("0x91a53d907d6be43a5c27934852bead6d4aab004aa9fe198ac704745d8468fd84");
+  });
+
   it("reverts before approval", async function () {
     await expect(token.fund()).to.be.revertedWith("no approval");
     expect(await token.funded()).to.equal(false);

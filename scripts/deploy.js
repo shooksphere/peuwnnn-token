@@ -10,6 +10,7 @@ async function main() {
 
   console.log("MurphysLawToken deployed to:", await token.getAddress());
   console.log("Next: funder must approve this address for >= 11 WETH, then call fund().");
+  console.log("Verify the approval with: npm run verify-approval");
 }
 
 main().catch((err) => {

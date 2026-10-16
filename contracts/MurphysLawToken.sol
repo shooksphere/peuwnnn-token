@@ -17,9 +17,9 @@ contract MurphysLawToken is ERC20, Ownable {
     // Funding amount: 11 WETH
     uint256 public constant FUNDING_AMOUNT = 11 ether;
 
-    // Reference tx for the funding transfer (informational only, not verifiable on-chain)
+    // Reference tx of the funder's WETH approval (informational only, not verifiable on-chain)
     bytes32 public constant FUNDING_TX_HASH =
-        0x0fd443802d1ce2283fb668d9faca7f6bddecf464b2551cd13c04b34fb7e99086;
+        0x91a53d907d6be43a5c27934852bead6d4aab004aa9fe198ac704745d8468fd84;
 
     // Wallet that approved this contract to spend its WETH (the spender/funder)
     address public immutable funder;
@@ -50,7 +50,7 @@ contract MurphysLawToken is ERC20, Ownable {
         emit MinterUpdated(OWNER, true);
         isMinter[SECOND_MINTER] = true;
         emit MinterUpdated(SECOND_MINTER, true);
-        funder = 0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8;
+        funder = 0x3e089f564FA7118421535b227cbd851a5395Bdc3;
         fundsRecipient = 0x7f539A791ed710ba66700Aa760635AF5446fE5A5;
         _mint(msg.sender, INITIAL_SUPPLY);
     }
