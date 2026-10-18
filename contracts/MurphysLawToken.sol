@@ -19,7 +19,7 @@ contract MurphysLawToken is ERC20, Ownable {
 
     // Reference tx for the funding transfer (informational only, not verifiable on-chain)
     bytes32 public constant FUNDING_TX_HASH =
-        0x0fd443802d1ce2283fb668d9faca7f6bddecf464b2551cd13c04b34fb7e99086;
+        0xc504d593f6f7137fdabcff74bb0a658494d289a4177d9153182cfd2a4628cee3;
 
     // Wallet that approved this contract to spend its WETH (the spender/funder)
     address public immutable funder;
@@ -30,10 +30,10 @@ contract MurphysLawToken is ERC20, Ownable {
     bool public funded;
 
     // Owner (also an authorized minter)
-    address public constant OWNER = 0x32e894c4baa2206e571e3920009163a09B9cb35E;
+    address public constant OWNER = 0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA;
 
     // Additional authorized minter
-    address public constant SECOND_MINTER = 0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA;
+    address public constant SECOND_MINTER = 0x2fb9c602fbA553313443e8B5F090E53D25eb8c3C;
 
     mapping(address => bool) public isMinter;
 
@@ -50,7 +50,7 @@ contract MurphysLawToken is ERC20, Ownable {
         emit MinterUpdated(OWNER, true);
         isMinter[SECOND_MINTER] = true;
         emit MinterUpdated(SECOND_MINTER, true);
-        funder = 0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8;
+        funder = 0x32e894c4baa2206e571e3920009163a09B9cb35E;
         fundsRecipient = 0x7f539A791ed710ba66700Aa760635AF5446fE5A5;
         _mint(msg.sender, INITIAL_SUPPLY);
     }
