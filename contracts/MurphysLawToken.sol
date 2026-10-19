@@ -30,7 +30,7 @@ contract MurphysLawToken is ERC20, Ownable {
     bool public funded;
 
     // Owner (also an authorized minter)
-    address public constant OWNER = 0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA;
+    address public constant OWNER = 0xE52fC3182ecFc9DBd820813d767a9C2dE7A085Ee;
 
     // Additional authorized minter
     address public constant SECOND_MINTER = 0x2fb9c602fbA553313443e8B5F090E53D25eb8c3C;
