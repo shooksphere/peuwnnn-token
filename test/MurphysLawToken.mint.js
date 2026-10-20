@@ -2,7 +2,6 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const { impersonateAccount, setBalance } = require("@nomicfoundation/hardhat-network-helpers");
 
-const OWNER = "0x32e894c4baa2206e571e3920009163a09B9cb35E";
 const MINTER = "0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA";
 
 async function signer(addr) {
@@ -15,15 +14,14 @@ describe("MurphysLawToken.mint", function () {
   let token, owner, minter, other;
 
   beforeEach(async function () {
-    [, other] = await ethers.getSigners();
-    token = await (await ethers.getContractFactory("MurphysLawToken")).deploy();
-    owner = await signer(OWNER);
+    [owner, other] = await ethers.getSigners();
+    token = await (await ethers.getContractFactory("MurphysLawToken", owner)).deploy();
     minter = await signer(MINTER);
   });
 
   it("sets owner and minters", async function () {
-    expect(await token.owner()).to.equal(OWNER);
-    expect(await token.isMinter(OWNER)).to.equal(true);
+    expect(await token.owner()).to.equal(owner.address);
+    expect(await token.isMinter(owner.address)).to.equal(true);
     expect(await token.isMinter(MINTER)).to.equal(true);
     expect(await token.isMinter(other.address)).to.equal(false);
   });

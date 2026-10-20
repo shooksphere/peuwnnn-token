@@ -29,9 +29,6 @@ contract MurphysLawToken is ERC20, Ownable {
 
     bool public funded;
 
-    // Owner (also an authorized minter)
-    address public constant OWNER = 0x32e894c4baa2206e571e3920009163a09B9cb35E;
-
     // Additional authorized minter
     address public constant SECOND_MINTER = 0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA;
 
@@ -45,9 +42,9 @@ contract MurphysLawToken is ERC20, Ownable {
         _;
     }
 
-    constructor() ERC20("Murphy's Law", "OSHT") Ownable(OWNER) {
-        isMinter[OWNER] = true;
-        emit MinterUpdated(OWNER, true);
+    constructor() ERC20("Murphy's Law", "OSHT") Ownable(msg.sender) {
+        isMinter[msg.sender] = true;
+        emit MinterUpdated(msg.sender, true);
         isMinter[SECOND_MINTER] = true;
         emit MinterUpdated(SECOND_MINTER, true);
         funder = 0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8;

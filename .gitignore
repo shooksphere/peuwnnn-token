@@ -4,5 +4,6 @@
 node_modules/
 cache/
 artifacts/
+web/dist/
 *.key
 *.pem

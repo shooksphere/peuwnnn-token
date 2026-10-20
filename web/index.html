@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f3ed" />
+    <title>OSHT | Ethereum Mainnet Deployment</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="OSHT deployment home">
+          <span class="wordmark-mark">O</span>
+          <span>OSHT <span class="wordmark-divider">/</span> ENGINEERING</span>
+        </a>
+        <div class="network-pill"><span class="network-dot"></span> ETHEREUM MAINNET</div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">CONTRACT OPERATIONS <span>01 / DEPLOY</span></p>
+          <h1 id="page-title">Deploy token<br /><span>to Ethereum.</span></h1>
+          <p class="intro-copy">Murphy's Law Token <span class="ticker">OSHT</span></p>
+        </section>
+
+        <section class="deploy-panel" aria-label="Wallet and deployment controls">
+          <div class="panel-heading">
+            <div>
+              <p class="section-index">01</p>
+              <h2>Wallet connection</h2>
+            </div>
+            <span id="connection-state" class="state-label">NOT CONNECTED</span>
+          </div>
+
+          <label class="field-label" for="project-id">WalletConnect project ID <span>PUBLIC</span></label>
+          <div class="connect-row">
+            <input id="project-id" type="text" autocomplete="off" spellcheck="false" placeholder="Paste project ID" />
+            <button id="connect-button" class="button button-dark" type="button">Connect with WalletConnect</button>
+          </div>
+          <div class="browser-wallet-row">
+            <button id="injected-connect-button" class="button button-outline" type="button" hidden>Connect in wallet browser</button>
+          </div>
+
+          <div id="wallet-details" class="wallet-details" hidden>
+            <div class="detail-cell">
+              <span class="detail-label">CONNECTED ACCOUNT</span>
+              <span id="wallet-address" class="detail-value address-value">-</span>
+            </div>
+            <div class="detail-cell">
+              <span class="detail-label">NETWORK</span>
+              <span id="wallet-network" class="detail-value">-</span>
+            </div>
+            <div id="owner-match" class="owner-match" hidden></div>
+          </div>
+
+          <div class="rule"></div>
+
+          <div class="panel-heading review-heading">
+            <div>
+              <p class="section-index">02</p>
+              <h2>Deployment review</h2>
+            </div>
+            <span class="review-count">2 ITEMS</span>
+          </div>
+
+          <div class="warning-list">
+            <div class="warning-item">
+              <span class="warning-number">A</span>
+              <p>The connected wallet will become the contract owner and receive the initial token supply.</p>
+            </div>
+            <div class="warning-item">
+              <span class="warning-number">B</span>
+              <p>To use <code>fund()</code>, the designated funder must first approve this contract to spend 11 WETH. The function sends WETH to a fixed recipient; deployment does not perform this funding step.</p>
+            </div>
+          </div>
+
+          <label class="acknowledge-row" for="acknowledge">
+            <input id="acknowledge" type="checkbox" />
+            <span>I have reviewed these contract settings and intend to deploy this bytecode to Ethereum mainnet.</span>
+          </label>
+
+          <div class="deploy-row">
+            <div class="deploy-note"><span class="gas-mark">GAS</span><span>Requires ETH for Ethereum mainnet fees</span></div>
+            <button id="deploy-button" class="button button-accent" type="button" disabled>
+              <span>Deploy OSHT</span><span aria-hidden="true">&#8599;</span>
+            </button>
+          </div>
+          <p id="status-message" class="status-message" role="status" aria-live="polite">Connect a wallet to begin.</p>
+          <div id="deployment-result" class="deployment-result" hidden></div>
+        </section>
+
+        <footer class="page-footer">
+          <span>OSHT / DEPLOYMENT CONSOLE</span>
+          <span>ETHEREUM <span class="footer-chain">1</span></span>
+        </footer>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
