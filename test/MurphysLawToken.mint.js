@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const { impersonateAccount, setBalance } = require("@nomicfoundation/hardhat-network-helpers");
 
-const MINTER = "0x4F2D58cA77f6efb7154B181ca1da05E923E31fFA";
+const MINTER = "0x2fb9c602fbA553313443e8B5F090E53D25eb8c3C";
 
 async function signer(addr) {
   await impersonateAccount(addr);
